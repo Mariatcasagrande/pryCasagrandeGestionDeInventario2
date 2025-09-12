@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using pryCasagrandeGestionInventario;
 
 namespace pryCasagrandeGestionDeInventario
 {
@@ -16,5 +17,13 @@ namespace pryCasagrandeGestionDeInventario
         {
             InitializeComponent();
         }
+
+        private void frmInicio_Load(object sender, EventArgs e)
+        {
+            clsConexionBD clsConexionBD = new clsConexionBD();
+            clsConexionBD.ConectarBD();
+            clsConexionBD.CargarCategoria(cboCategorias);
+        }
+        
     }
 }

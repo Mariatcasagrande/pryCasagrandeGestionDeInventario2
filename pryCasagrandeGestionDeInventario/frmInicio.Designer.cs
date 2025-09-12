@@ -39,12 +39,12 @@
             this.lblDescripción = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblStock = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.txtCodigo = new System.Windows.Forms.TextBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
+            this.txtPrecio = new System.Windows.Forms.TextBox();
+            this.txtStock = new System.Windows.Forms.TextBox();
+            this.cboCategorias = new System.Windows.Forms.ComboBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
@@ -72,10 +72,10 @@
             this.tabPage1.Controls.Add(this.btnAgregar);
             this.tabPage1.Controls.Add(this.btnModificar);
             this.tabPage1.Controls.Add(this.btnEliminar);
-            this.tabPage1.Controls.Add(this.textBox5);
-            this.tabPage1.Controls.Add(this.textBox4);
-            this.tabPage1.Controls.Add(this.textBox3);
-            this.tabPage1.Controls.Add(this.textBox2);
+            this.tabPage1.Controls.Add(this.txtStock);
+            this.tabPage1.Controls.Add(this.txtPrecio);
+            this.tabPage1.Controls.Add(this.txtDescripcion);
+            this.tabPage1.Controls.Add(this.txtNombre);
             this.tabPage1.Controls.Add(this.lblStock);
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Controls.Add(this.lblDescripción);
@@ -161,8 +161,8 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnBuscar);
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.cboCategorias);
+            this.groupBox1.Controls.Add(this.txtCodigo);
             this.groupBox1.Controls.Add(this.lblCategorías);
             this.groupBox1.Controls.Add(this.lblCódigo);
             this.groupBox1.Location = new System.Drawing.Point(58, 65);
@@ -182,55 +182,55 @@
             this.lblStock.TabIndex = 7;
             this.lblStock.Text = "Stock";
             // 
-            // textBox1
+            // txtCodigo
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(177, 74);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(122, 27);
-            this.textBox1.TabIndex = 3;
+            this.txtCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCodigo.Location = new System.Drawing.Point(177, 74);
+            this.txtCodigo.Name = "txtCodigo";
+            this.txtCodigo.Size = new System.Drawing.Size(122, 27);
+            this.txtCodigo.TabIndex = 3;
             // 
-            // textBox2
+            // txtNombre
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(235, 219);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(334, 27);
-            this.textBox2.TabIndex = 9;
+            this.txtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombre.Location = new System.Drawing.Point(235, 219);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(334, 27);
+            this.txtNombre.TabIndex = 9;
             // 
-            // textBox3
+            // txtDescripcion
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(235, 269);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(334, 84);
-            this.textBox3.TabIndex = 10;
+            this.txtDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescripcion.Location = new System.Drawing.Point(235, 269);
+            this.txtDescripcion.Multiline = true;
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(334, 84);
+            this.txtDescripcion.TabIndex = 10;
             // 
-            // textBox4
+            // txtPrecio
             // 
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(235, 370);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(122, 27);
-            this.textBox4.TabIndex = 11;
+            this.txtPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrecio.Location = new System.Drawing.Point(235, 370);
+            this.txtPrecio.Name = "txtPrecio";
+            this.txtPrecio.Size = new System.Drawing.Size(122, 27);
+            this.txtPrecio.TabIndex = 11;
             // 
-            // textBox5
+            // txtStock
             // 
-            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(235, 416);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(122, 27);
-            this.textBox5.TabIndex = 12;
+            this.txtStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStock.Location = new System.Drawing.Point(235, 416);
+            this.txtStock.Name = "txtStock";
+            this.txtStock.Size = new System.Drawing.Size(122, 27);
+            this.txtStock.TabIndex = 12;
             // 
-            // comboBox1
+            // cboCategorias
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(177, 32);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(334, 28);
-            this.comboBox1.TabIndex = 4;
+            this.cboCategorias.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboCategorias.FormattingEnabled = true;
+            this.cboCategorias.Location = new System.Drawing.Point(177, 32);
+            this.cboCategorias.Name = "cboCategorias";
+            this.cboCategorias.Size = new System.Drawing.Size(334, 28);
+            this.cboCategorias.TabIndex = 4;
             // 
             // btnBuscar
             // 
@@ -285,6 +285,7 @@
             this.Controls.Add(this.tabControl1);
             this.Name = "frmInicio";
             this.Text = "Inicio";
+            this.Load += new System.EventHandler(this.frmInicio_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -307,12 +308,12 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lblStock;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtStock;
+        private System.Windows.Forms.TextBox txtPrecio;
+        private System.Windows.Forms.TextBox txtDescripcion;
+        private System.Windows.Forms.TextBox txtNombre;
+        private System.Windows.Forms.ComboBox cboCategorias;
+        private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnEliminar;
