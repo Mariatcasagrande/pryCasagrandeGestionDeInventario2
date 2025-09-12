@@ -17,7 +17,7 @@ namespace pryCasagrandeGestionInventario
     {
         //cadena de conexion
         //sql - string cadenaConexion = "Server=localhost;Database=Ventas2;Trusted_Connection=True;";
-        string cadenaConexion = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=..\\..\\..\\..\\pryCasagrandeGestionDeInventario\\pryCasagrandeGestionDeInventario\\BasedeDatos\\dbGestionInventario1.accdb";
+        string cadenaConexion = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\Alumno\\source\\repos\\pryCasagrandeGestionDeInventario2\\pryCasagrandeGestionDeInventario\\BasedeDatos\\dbGestionInventario1.accdb";
         //conector
         //SqlConnection coneccionBaseDatos;
         OleDbConnection coneccionBaseDatos;
@@ -66,24 +66,7 @@ namespace pryCasagrandeGestionInventario
         
         public void AgregarABase(string codigo, string nombre, string descripcion)
         {
-            if (coneccionBaseDatos.State != System.Data.ConnectionState.Open)
-            {
-                coneccionBaseDatos.Open();
-            }
-
-            comandoBaseDatos = new OleDbCommand();
-            comandoBaseDatos.Connection = coneccionBaseDatos;
-            comandoBaseDatos.CommandType = System.Data.CommandType.Text;
-
-            // Concatenando directamente (NO recomendado en proyectos reales por seguridad, pero funciona)
-            comandoBaseDatos.CommandText =
-                 "INSERT INTO Productos (id1, marca_nombre, observaciones) " +
-                 "VALUES (" + codigo + ", '" + nombre + "', '" + descripcion + "')";
-
             
-
-            MessageBox.Show("Producto agregado correctamente ✅");
-
         }
 
     }

@@ -20,16 +20,17 @@ namespace pryCasagrandeGestionDeInventario
 
         private void frmInicio_Load(object sender, EventArgs e)
         {
-            clsConexionBD clsConexionBD = new clsConexionBD();
+            clsConexionBDSQL clsConexionBD = new clsConexionBDSQL();
             clsConexionBD.ConectarBD();
             clsConexionBD.CargarCategoria(cboCategorias);
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            clsConexionBD clsConexionBD = new clsConexionBD();
-            clsConexionBD.ConectarBD();
-            clsConexionBD.AgregarABase(txtCodigo.Text, txtNombre.Text, txtDescripcion.Text);
+            clsConexionBDSQL clsConexionBDSQL = new clsConexionBDSQL();
+            clsConexionBDSQL.ConectarBD();
+            clsConexionBDSQL.AgregarABase(txtCodigo.Text, txtNombre.Text, cboCategorias.Text, Convert.ToDecimal( txtPrecio.Text), Convert.ToInt32(txtStock.Text), txtDescripcion.Text);
+            
         }
     }
 }
