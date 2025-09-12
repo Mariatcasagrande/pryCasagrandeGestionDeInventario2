@@ -24,6 +24,12 @@ namespace pryCasagrandeGestionDeInventario
             clsConexionBD.ConectarBD();
             clsConexionBD.CargarCategoria(cboCategorias);
         }
-        
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            clsConexionBD clsConexionBD = new clsConexionBD();
+            clsConexionBD.ConectarBD();
+            clsConexionBD.AgregarABase(txtCodigo.Text, txtNombre.Text, txtDescripcion.Text);
+        }
     }
 }

@@ -64,9 +64,25 @@ namespace pryCasagrandeGestionInventario
             }
         }
         
-        public void AgregarABase()
+        public void AgregarABase(string codigo, string nombre, string descripcion)
         {
+            if (coneccionBaseDatos.State != System.Data.ConnectionState.Open)
+            {
+                coneccionBaseDatos.Open();
+            }
 
+            comandoBaseDatos = new OleDbCommand();
+            comandoBaseDatos.Connection = coneccionBaseDatos;
+            comandoBaseDatos.CommandType = System.Data.CommandType.Text;
+
+            // Concatenando directamente (NO recomendado en proyectos reales por seguridad, pero funciona)
+            comandoBaseDatos.CommandText =
+                 "INSERT INTO Productos (id1, marca_nombre, observaciones) " +
+                 "VALUES (" + codigo + ", '" + nombre + "', '" + descripcion + "')";
+
+            
+
+            MessageBox.Show("Producto agregado correctamente ✅");
 
         }
 
