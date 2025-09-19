@@ -16,7 +16,8 @@ namespace pryCasagrandeGestionInventario
     internal class clsConexionBDSQL
     {
         //cadena de conexion
-        string cadenaConexion = "Server=localhost;Database=gestion;Trusted_Connection=True;";
+        //string cadenaConexion = "Server=localhost;Database=gestion;Trusted_Connection=True;";
+        string cadenaConexion = "Server=(localdb)\\MSSQLLocalDB;Database=gestion;Trusted_Connection=True;";
         //string cadenaConexion = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\Alumno\\source\\repos\\pryCasagrandeGestionDeInventario2\\pryCasagrandeGestionDeInventario\\BasedeDatos\\dbGestionInventario1.accdb";
         //conector
         SqlConnection coneccionBaseDatos;
@@ -53,31 +54,116 @@ namespace pryCasagrandeGestionInventario
         {
             comandoBaseDatos = new SqlCommand();
             comandoBaseDatos.Connection = coneccionBaseDatos;
-            comandoBaseDatos.CommandType =System.Data.CommandType.Text;
+            comandoBaseDatos.CommandType = System.Data.CommandType.Text;
 
             comandoBaseDatos.CommandText = "SELECT nombre FROM productos";
 
-            lectorDataReader =comandoBaseDatos.ExecuteReader();
+            lectorDataReader = comandoBaseDatos.ExecuteReader();
 
-            while (lectorDataReader.Read()) 
+            while (lectorDataReader.Read())
             {
                 listaCategoria.Items.Add(lectorDataReader[0]);
             }
         }
-        
+
         public void AgregarABase(string codigo, string nombre, string categoria, decimal precio, Int32 stock, string descripcion)
         {
             comandoBaseDatos = new SqlCommand();
             comandoBaseDatos.Connection = coneccionBaseDatos;
             comandoBaseDatos.CommandType = System.Data.CommandType.Text;
 
-            comandoBaseDatos.CommandText = $"INSERT INTO productos (codigo, nombre, categoria, precio, stock, descripcion) VALUES ('{codigo}','{categoria}','{nombre}','{precio}','{stock}','{descripcion}')";
+            comandoBaseDatos.CommandText = $"INSERT INTO productos (codigo, nombre, categoria, precio, stock, descripcion) VALUES ('{codigo}','{nombre}','{categoria}','{precio}','{stock}','{descripcion}')";
 
             lectorDataReader = comandoBaseDatos.ExecuteReader();
 
             MessageBox.Show("SE AGREGO CON EXITO");
 
         }
+        public bool Buscar(string codigo, ref string nombre, ref string categoria, ref string precio, ref string stock, ref string descripcion)
+        {
+            comandoBaseDatos = new SqlCommand(
+                "SELECT nombre, categoria, precio, stock, descripcion FROM productos WHERE codigo = '" + codigo + "'",
+                coneccionBaseDatos
+            );
 
+            lectorDataReader = comandoBaseDatos.ExecuteReader();
+
+            if (lectorDataReader.Read())
+            {
+                MessageBox.Show("El código " + codigo + " ya existe en la base de datos.");
+
+                // Guardamos los valores en los parámetros de salida
+                nombre = lectorDataReader["nombre"].ToString();
+                categoria = lectorDataReader["categoria"].ToString();
+                precio = lectorDataReader["precio"].ToString();
+                stock = lectorDataReader["stock"].ToString();
+                descripcion = lectorDataReader["descripcion"].ToString();
+
+                lectorDataReader.Close();
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("El código " + codigo + " no existe. Puedes agregarlo.");
+                lectorDataReader.Close();
+                return false;
+            }
+        }
+        public void Modificar(string codigo, string nombre, string categoria, string precio, string stock, string descripcion)
+        {
+            try
+            {
+                comandoBaseDatos = new SqlCommand(
+                    "UPDATE productos SET nombre = '" + nombre +
+                    "', categoria = '" + categoria +
+                    "', precio = '" + precio +
+                    "', stock = '" + stock +
+                    "', descripcion = '" + descripcion +
+                    "' WHERE codigo = '" + codigo + "'",
+                    coneccionBaseDatos
+                );
+
+                int filasAfectadas = comandoBaseDatos.ExecuteNonQuery(); // ejecuta la actualización
+
+                if (filasAfectadas > 0)
+                {
+                    MessageBox.Show("Producto modificado correctamente.");
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo modificar el producto. Verifica el código.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al modificar el producto: " + ex.Message);
+            }
+
+        }
+        public void Eliminar(string codigo)
+        {
+            try
+            {
+                comandoBaseDatos = new SqlCommand(
+                    "DELETE FROM productos WHERE codigo = '" + codigo + "'",
+                    coneccionBaseDatos
+                );
+
+                int filasAfectadas = comandoBaseDatos.ExecuteNonQuery();
+
+                if (filasAfectadas > 0)
+                {
+                    MessageBox.Show("Producto eliminado correctamente.");
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo eliminar el producto. Verifica el código.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar el producto: " + ex.Message);
+            }
+        }
     }
 }
