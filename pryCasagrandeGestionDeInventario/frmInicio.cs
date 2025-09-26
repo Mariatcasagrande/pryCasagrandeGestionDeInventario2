@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,8 @@ namespace pryCasagrandeGestionDeInventario
         {
             clsConexionBDSQL clsConexionBD = new clsConexionBDSQL();
             clsConexionBD.ConectarBD();
-            clsConexionBD.CargarCategoria(cboCategorias);
+            clsConexionBD.CargarCategorias(cboCategorias);
+            clsConexionBD.CargarCategorias(cboCategoriaBusqueda);
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -41,7 +43,7 @@ namespace pryCasagrandeGestionDeInventario
             clsConexionBDSQL conexion = new clsConexionBDSQL();
             conexion.ConectarBD();
 
-            
+
             string nombre = "";
             string categoria = "";
             string precio = "";
@@ -52,7 +54,7 @@ namespace pryCasagrandeGestionDeInventario
 
             if (existe)
             {
-                
+
                 txtNombre.Text = nombre;
                 cboCategorias.Text = categoria;
                 txtPrecio.Text = precio;
@@ -61,7 +63,7 @@ namespace pryCasagrandeGestionDeInventario
             }
             else
             {
-                
+
                 txtNombre.Clear();
                 cboCategorias.SelectedIndex = -1;
                 txtPrecio.Clear();
@@ -74,7 +76,7 @@ namespace pryCasagrandeGestionDeInventario
         {
             clsConexionBDSQL conexion = new clsConexionBDSQL();
             conexion.ConectarBD();
-            conexion.Modificar(txtCodigo.Text,txtNombre.Text, cboCategorias.Text, txtPrecio.Text, txtStock.Text, txtDescripcion.Text);
+            conexion.Modificar(txtCodigo.Text, txtNombre.Text, cboCategorias.Text, txtPrecio.Text, txtStock.Text, txtDescripcion.Text);
 
         }
 
@@ -85,17 +87,79 @@ namespace pryCasagrandeGestionDeInventario
 
             if (!string.IsNullOrWhiteSpace(txtCodigo.Text))
             {
-               
-                    conexion.Eliminar(txtCodigo.Text);
 
-                    
-                    txtCodigo.Clear();
-                    txtNombre.Clear();
-                    cboCategorias.SelectedIndex = -1;
-                    txtPrecio.Clear();
-                    txtStock.Clear();
-                    txtDescripcion.Clear();
-             
+                conexion.Eliminar(txtCodigo.Text);
+
+
+                txtCodigo.Clear();
+                txtNombre.Clear();
+                cboCategorias.SelectedIndex = -1;
+                txtPrecio.Clear();
+                txtStock.Clear();
+                txtDescripcion.Clear();
+
+            }
         }
-    } 
+
+
+        private void btnBuscarPor_Click(object sender, EventArgs e)
+        {
+            clsConexionBDSQL conexion = new clsConexionBDSQL();
+            conexion.ConectarBD();
+
+            if (optCategorias.Checked)
+            {
+                conexion.Mostrar(dgvProductos, "Categoria", cboCategoriaBusqueda.SelectedItem.ToString());
+                LimpiarControlesExcepto(cboCategoriaBusqueda);
+            }
+            else if (optCodigo.Checked)
+            {
+                conexion.Mostrar(dgvProductos, "Codigo", txtCodigo2.Text);
+                LimpiarControlesExcepto(txtCodigo2);
+            }
+            else if (optNombre.Checked)
+            {
+                conexion.Mostrar(dgvProductos, "Nombre", txtNombre2.Text);
+                LimpiarControlesExcepto(txtNombre2);
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un criterio de búsqueda.");
+            }
+        }
+
+        private void LimpiarControlesExcepto(Control controlActivo)
+        {
+            if (controlActivo != txtCodigo2) txtCodigo2.Clear();
+            if (controlActivo != txtNombre2) txtNombre2.Clear();
+            if (controlActivo != cboCategoriaBusqueda) cboCategoriaBusqueda.SelectedIndex = -1;
+        }
+
+
+        private void optCategorias_CheckedChanged(object sender, EventArgs e)
+        {
+            cboCategoriaBusqueda.Enabled = optCategorias.Checked;
+            txtCodigo2.Enabled = !optCategorias.Checked;
+            txtNombre2.Enabled = !optCategorias.Checked;
+        }
+
+        private void optCodigo_CheckedChanged(object sender, EventArgs e)
+        {
+            txtCodigo2.Enabled = optCodigo.Checked;
+            txtNombre2.Enabled = !optCodigo.Checked;
+            cboCategoriaBusqueda.Enabled = !optCodigo.Checked;
+        }
+
+        private void optNombre_CheckedChanged(object sender, EventArgs e)
+        {
+            txtNombre2.Enabled = optNombre.Checked;
+            txtCodigo2.Enabled = !optNombre.Checked;
+            cboCategoriaBusqueda.Enabled = !optNombre.Checked;
+        }
+
+        private void dgvProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+    }
 }

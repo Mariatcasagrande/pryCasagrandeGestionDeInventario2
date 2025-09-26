@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 using System.Data.OleDb;
 
 using System.Windows.Forms;
+using System.Data;
 
 namespace pryCasagrandeGestionInventario
 {
@@ -50,20 +51,22 @@ namespace pryCasagrandeGestionInventario
 
         }
 
-        public void CargarCategoria(ComboBox listaCategoria)
+        public void CargarCategorias(ComboBox combo)
         {
             comandoBaseDatos = new SqlCommand();
             comandoBaseDatos.Connection = coneccionBaseDatos;
             comandoBaseDatos.CommandType = System.Data.CommandType.Text;
 
-            comandoBaseDatos.CommandText = "SELECT nombre FROM productos";
+            comandoBaseDatos.CommandText = "SELECT DISTINCT categoria FROM productos";
 
             lectorDataReader = comandoBaseDatos.ExecuteReader();
 
             while (lectorDataReader.Read())
             {
-                listaCategoria.Items.Add(lectorDataReader[0]);
+                combo.Items.Add(lectorDataReader[0].ToString());
             }
+
+            lectorDataReader.Close();
         }
 
         public void AgregarABase(string codigo, string nombre, string categoria, decimal precio, Int32 stock, string descripcion)
@@ -165,5 +168,48 @@ namespace pryCasagrandeGestionInventario
                 MessageBox.Show("Error al eliminar el producto: " + ex.Message);
             }
         }
+        public bool Mostrar(DataGridView dgv, string criterio, string valor)
+        {
+            string consulta = "";
+            if (criterio == "Codigo")
+                consulta = "SELECT * FROM productos WHERE codigo = '" + valor + "'";
+            else if (criterio == "Nombre")
+                consulta = "SELECT * FROM productos WHERE nombre LIKE '%" + valor + "%'";
+            else if (criterio == "Categoria")
+                consulta = "SELECT * FROM productos WHERE categoria = '" + valor + "'";
+
+            comandoBaseDatos = new SqlCommand(consulta, coneccionBaseDatos);
+            lectorDataReader = comandoBaseDatos.ExecuteReader();
+
+            dgv.Rows.Clear();
+
+
+            bool hayResultados = false;
+
+            while (lectorDataReader.Read())
+            {
+                dgv.Rows.Add(
+                    lectorDataReader["codigo"].ToString(),
+                    lectorDataReader["nombre"].ToString(),
+                    lectorDataReader["categoria"].ToString(),
+                    lectorDataReader["precio"].ToString(),
+                    lectorDataReader["stock"].ToString(),
+                    lectorDataReader["descripcion"].ToString()
+                );
+                hayResultados = true;
+            }
+
+            lectorDataReader.Close();
+
+            if (!hayResultados)
+            {
+                MessageBox.Show("No se encontraron resultados.");
+            }
+
+            return hayResultados;
+
+        }
+
     }
+
 }

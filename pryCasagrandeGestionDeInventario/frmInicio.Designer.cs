@@ -48,21 +48,27 @@
             this.lblPrecio = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
             this.tabBusqueda = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
+            this.dgvProductos = new System.Windows.Forms.DataGridView();
+            this.btnBuscarPor = new System.Windows.Forms.Button();
             this.optNombre = new System.Windows.Forms.RadioButton();
-            this.optCódigo = new System.Windows.Forms.RadioButton();
+            this.optCodigo = new System.Windows.Forms.RadioButton();
             this.optCategorias = new System.Windows.Forms.RadioButton();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cboCategoriaBusqueda = new System.Windows.Forms.ComboBox();
             this.txtCodigo2 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtNombre2 = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabGestionProducto.SuspendLayout();
             this.tabGestionProductos.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabBusqueda.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
             this.SuspendLayout();
             // 
             // tabGestionProducto
@@ -288,14 +294,14 @@
             // tabBusqueda
             // 
             this.tabBusqueda.BackColor = System.Drawing.Color.Khaki;
-            this.tabBusqueda.Controls.Add(this.dataGridView1);
-            this.tabBusqueda.Controls.Add(this.button1);
+            this.tabBusqueda.Controls.Add(this.dgvProductos);
+            this.tabBusqueda.Controls.Add(this.btnBuscarPor);
             this.tabBusqueda.Controls.Add(this.optNombre);
-            this.tabBusqueda.Controls.Add(this.optCódigo);
+            this.tabBusqueda.Controls.Add(this.optCodigo);
             this.tabBusqueda.Controls.Add(this.optCategorias);
-            this.tabBusqueda.Controls.Add(this.comboBox1);
+            this.tabBusqueda.Controls.Add(this.cboCategoriaBusqueda);
             this.tabBusqueda.Controls.Add(this.txtCodigo2);
-            this.tabBusqueda.Controls.Add(this.textBox2);
+            this.tabBusqueda.Controls.Add(this.txtNombre2);
             this.tabBusqueda.Location = new System.Drawing.Point(4, 27);
             this.tabBusqueda.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabBusqueda.Name = "tabBusqueda";
@@ -304,33 +310,42 @@
             this.tabBusqueda.TabIndex = 1;
             this.tabBusqueda.Text = "Busqueda";
             // 
-            // dataGridView1
+            // dgvProductos
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(25, 126);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(763, 338);
-            this.dataGridView1.TabIndex = 20;
+            this.dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProductos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.codigo,
+            this.nombre,
+            this.categoria,
+            this.precio,
+            this.stock,
+            this.descripcion});
+            this.dgvProductos.Location = new System.Drawing.Point(6, 127);
+            this.dgvProductos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dgvProductos.Name = "dgvProductos";
+            this.dgvProductos.RowHeadersWidth = 51;
+            this.dgvProductos.RowTemplate.Height = 24;
+            this.dgvProductos.Size = new System.Drawing.Size(907, 338);
+            this.dgvProductos.TabIndex = 20;
+            this.dgvProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductos_CellContentClick);
             // 
-            // button1
+            // btnBuscarPor
             // 
-            this.button1.BackColor = System.Drawing.Color.Moccasin;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(801, 31);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(109, 48);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "Buscar";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnBuscarPor.BackColor = System.Drawing.Color.Moccasin;
+            this.btnBuscarPor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarPor.Location = new System.Drawing.Point(801, 28);
+            this.btnBuscarPor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnBuscarPor.Name = "btnBuscarPor";
+            this.btnBuscarPor.Size = new System.Drawing.Size(109, 48);
+            this.btnBuscarPor.TabIndex = 19;
+            this.btnBuscarPor.Text = "Buscar";
+            this.btnBuscarPor.UseVisualStyleBackColor = false;
+            this.btnBuscarPor.Click += new System.EventHandler(this.btnBuscarPor_Click);
             // 
             // optNombre
             // 
             this.optNombre.AutoSize = true;
-            this.optNombre.Location = new System.Drawing.Point(520, 46);
+            this.optNombre.Location = new System.Drawing.Point(520, 41);
             this.optNombre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.optNombre.Name = "optNombre";
             this.optNombre.Size = new System.Drawing.Size(83, 22);
@@ -338,18 +353,20 @@
             this.optNombre.TabStop = true;
             this.optNombre.Text = "Nombre";
             this.optNombre.UseVisualStyleBackColor = true;
+            this.optNombre.CheckedChanged += new System.EventHandler(this.optNombre_CheckedChanged);
             // 
-            // optCódigo
+            // optCodigo
             // 
-            this.optCódigo.AutoSize = true;
-            this.optCódigo.Location = new System.Drawing.Point(292, 43);
-            this.optCódigo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.optCódigo.Name = "optCódigo";
-            this.optCódigo.Size = new System.Drawing.Size(77, 22);
-            this.optCódigo.TabIndex = 17;
-            this.optCódigo.TabStop = true;
-            this.optCódigo.Text = "Código";
-            this.optCódigo.UseVisualStyleBackColor = true;
+            this.optCodigo.AutoSize = true;
+            this.optCodigo.Location = new System.Drawing.Point(292, 39);
+            this.optCodigo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.optCodigo.Name = "optCodigo";
+            this.optCodigo.Size = new System.Drawing.Size(77, 22);
+            this.optCodigo.TabIndex = 17;
+            this.optCodigo.TabStop = true;
+            this.optCodigo.Text = "Código";
+            this.optCodigo.UseVisualStyleBackColor = true;
+            this.optCodigo.CheckedChanged += new System.EventHandler(this.optCodigo_CheckedChanged);
             // 
             // optCategorias
             // 
@@ -362,34 +379,35 @@
             this.optCategorias.TabStop = true;
             this.optCategorias.Text = "Categorías";
             this.optCategorias.UseVisualStyleBackColor = true;
+            this.optCategorias.CheckedChanged += new System.EventHandler(this.optCategorias_CheckedChanged);
             // 
-            // comboBox1
+            // cboCategoriaBusqueda
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(132, 38);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(131, 24);
-            this.comboBox1.TabIndex = 14;
+            this.cboCategoriaBusqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboCategoriaBusqueda.FormattingEnabled = true;
+            this.cboCategoriaBusqueda.Location = new System.Drawing.Point(132, 39);
+            this.cboCategoriaBusqueda.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboCategoriaBusqueda.Name = "cboCategoriaBusqueda";
+            this.cboCategoriaBusqueda.Size = new System.Drawing.Size(131, 24);
+            this.cboCategoriaBusqueda.TabIndex = 14;
             // 
             // txtCodigo2
             // 
             this.txtCodigo2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodigo2.Location = new System.Drawing.Point(375, 46);
+            this.txtCodigo2.Location = new System.Drawing.Point(375, 41);
             this.txtCodigo2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtCodigo2.Name = "txtCodigo2";
             this.txtCodigo2.Size = new System.Drawing.Size(121, 22);
             this.txtCodigo2.TabIndex = 13;
             // 
-            // textBox2
+            // txtNombre2
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(621, 46);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(167, 22);
-            this.textBox2.TabIndex = 15;
+            this.txtNombre2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombre2.Location = new System.Drawing.Point(609, 42);
+            this.txtNombre2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtNombre2.Name = "txtNombre2";
+            this.txtNombre2.Size = new System.Drawing.Size(167, 22);
+            this.txtNombre2.TabIndex = 15;
             // 
             // tabPage3
             // 
@@ -401,6 +419,48 @@
             this.tabPage3.Size = new System.Drawing.Size(916, 497);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Informe";
+            // 
+            // codigo
+            // 
+            this.codigo.HeaderText = "Codigo";
+            this.codigo.MinimumWidth = 6;
+            this.codigo.Name = "codigo";
+            this.codigo.Width = 70;
+            // 
+            // nombre
+            // 
+            this.nombre.HeaderText = "Nombre";
+            this.nombre.MinimumWidth = 6;
+            this.nombre.Name = "nombre";
+            this.nombre.Width = 125;
+            // 
+            // categoria
+            // 
+            this.categoria.HeaderText = "Categoria";
+            this.categoria.MinimumWidth = 6;
+            this.categoria.Name = "categoria";
+            this.categoria.Width = 125;
+            // 
+            // precio
+            // 
+            this.precio.HeaderText = "Precio";
+            this.precio.MinimumWidth = 6;
+            this.precio.Name = "precio";
+            this.precio.Width = 80;
+            // 
+            // stock
+            // 
+            this.stock.HeaderText = "Stock";
+            this.stock.MinimumWidth = 6;
+            this.stock.Name = "stock";
+            this.stock.Width = 50;
+            // 
+            // descripcion
+            // 
+            this.descripcion.HeaderText = "Descripción";
+            this.descripcion.MinimumWidth = 6;
+            this.descripcion.Name = "descripcion";
+            this.descripcion.Width = 200;
             // 
             // frmInicio
             // 
@@ -420,7 +480,7 @@
             this.groupBox1.PerformLayout();
             this.tabBusqueda.ResumeLayout(false);
             this.tabBusqueda.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -449,13 +509,19 @@
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.RadioButton optCategorias;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cboCategoriaBusqueda;
         private System.Windows.Forms.TextBox txtCodigo2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtNombre2;
         private System.Windows.Forms.RadioButton optNombre;
-        private System.Windows.Forms.RadioButton optCódigo;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.RadioButton optCodigo;
+        private System.Windows.Forms.DataGridView dgvProductos;
+        private System.Windows.Forms.Button btnBuscarPor;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn categoria;
+        private System.Windows.Forms.DataGridViewTextBoxColumn precio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stock;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;
     }
 }
