@@ -32,5 +32,15 @@ namespace pryCasagrandeGestionDeInventario
             clsConexionBDSQL.AgregarABase(txtCodigo.Text, txtNombre.Text, cboCategorias.Text, Convert.ToDecimal( txtPrecio.Text), Convert.ToInt32(txtStock.Text), txtDescripcion.Text);
             
         }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+        }
     }
 }
