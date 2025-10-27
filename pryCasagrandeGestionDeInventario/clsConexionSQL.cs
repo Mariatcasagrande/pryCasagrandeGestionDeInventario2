@@ -19,6 +19,9 @@ namespace pryCasagrandeGestionInventario
         //cadena de conexion
         //string cadenaConexion = "Server=localhost;Database=gestion;Trusted_Connection=True;";
         string cadenaConexion = "Server=(localdb)\\MSSQLLocalDB;Database=gestion;Trusted_Connection=True;";
+
+        //string cadenaConexion = "Server=localhost;Database=gestion;Trusted_Connection=True;";
+        string cadenaConexion = "Server=(localdb)\\MSSQLLocalDB;Database=gestion;Trusted_Connection=True;";
         //string cadenaConexion = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\Alumno\\source\\repos\\pryCasagrandeGestionDeInventario2\\pryCasagrandeGestionDeInventario\\BasedeDatos\\dbGestionInventario1.accdb";
         //conector
         SqlConnection coneccionBaseDatos;
