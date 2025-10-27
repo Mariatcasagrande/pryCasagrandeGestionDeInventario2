@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using pryCasagrandeGestionInventario;
 
 namespace pryCasagrandeGestionDeInventario
@@ -20,13 +21,15 @@ namespace pryCasagrandeGestionDeInventario
             InitializeComponent();
         }
 
-
         private void frmInicio_Load(object sender, EventArgs e)
         {
             clsConexionBDSQL clsConexionBD = new clsConexionBDSQL();
             clsConexionBD.ConectarBD();
             clsConexionBD.CargarCategorias(cboCategorias);
             clsConexionBD.CargarCategorias(cboCategoriaBusqueda);
+            clsConexionBDSQL conexion = new clsConexionBDSQL();
+            conexion.ConectarBD();
+            conexion.GenerarReporteInventarioConPuntos(chartInforme);
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -77,7 +80,6 @@ namespace pryCasagrandeGestionDeInventario
             clsConexionBDSQL conexion = new clsConexionBDSQL();
             conexion.ConectarBD();
             conexion.Modificar(txtCodigo.Text, txtNombre.Text, cboCategorias.Text, txtPrecio.Text, txtStock.Text, txtDescripcion.Text);
-
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -158,6 +160,14 @@ namespace pryCasagrandeGestionDeInventario
         }
 
         private void dgvProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void tabInforme_Click(object sender, EventArgs e)
+        {}
+
+        private void tabGestionProductos_Click(object sender, EventArgs e)
         {
 
         }
