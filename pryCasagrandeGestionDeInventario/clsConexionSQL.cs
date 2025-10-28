@@ -11,6 +11,7 @@ using System.Data.OleDb;
 
 using System.Windows.Forms;
 using System.Data;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace pryCasagrandeGestionInventario
 {
@@ -31,7 +32,6 @@ namespace pryCasagrandeGestionInventario
         SqlDataReader lectorDataReader;
 
         public string nombreBaseDeDatos;
-
         public void ConectarBD()
         {
             try
@@ -51,7 +51,6 @@ namespace pryCasagrandeGestionInventario
             }
 
         }
-
         public void CargarCategorias(ComboBox combo)
         {
             comandoBaseDatos = new SqlCommand();
@@ -69,7 +68,6 @@ namespace pryCasagrandeGestionInventario
 
             lectorDataReader.Close();
         }
-
         public void AgregarABase(string codigo, string nombre, string categoria, decimal precio, Int32 stock, string descripcion)
         {
             comandoBaseDatos = new SqlCommand();
@@ -210,7 +208,79 @@ namespace pryCasagrandeGestionInventario
             return hayResultados;
 
         }
+        public DataTable ObtenerInventarioParaReporte()
+        {
+            DataTable dtInventario = new DataTable();
 
+            try
+            {
+                // Abrir conexión solo si está cerrada
+                if (coneccionBaseDatos.State == ConnectionState.Closed)
+                {
+                    coneccionBaseDatos.Open();
+                }
+
+                string consulta = "SELECT Nombre, Stock FROM productos ORDER BY Stock DESC";
+                comandoBaseDatos = new SqlCommand(consulta, coneccionBaseDatos);
+
+                SqlDataAdapter da = new SqlDataAdapter(comandoBaseDatos);
+                da.Fill(dtInventario);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener datos de inventario: " + ex.Message);
+            }
+            finally
+            {
+                // Cerrar solo si sigue abierta
+                if (coneccionBaseDatos.State == ConnectionState.Open)
+                {
+                    coneccionBaseDatos.Close();
+                }
+            }
+
+            return dtInventario;
+        }
+        public void GenerarReporteInventarioConPuntos(Chart chartInventario)
+        {
+            clsConexionBDSQL conexion = new clsConexionBDSQL();
+            conexion.ConectarBD();
+            DataTable dtReporte = conexion.ObtenerInventarioParaReporte();
+
+            chartInventario.Series.Clear();
+            chartInventario.Titles.Clear();
+            chartInventario.ChartAreas[0].AxisX.MajorGrid.LineWidth = 0;
+            chartInventario.ChartAreas[0].AxisY.MajorGrid.LineWidth = 0;
+
+            Series serieInventario = chartInventario.Series.Add("Stock de Productos");
+            serieInventario.ChartType = SeriesChartType.Column;
+            serieInventario.IsValueShownAsLabel = true;
+
+            int i = 0;
+            foreach (DataRow dr in dtReporte.Rows)
+            {
+                try
+                {
+                    double valorStock = Convert.ToDouble(dr["Stock"]);
+                    string etiquetaNombre = dr["Nombre"].ToString();
+
+                    serieInventario.Points.Add(valorStock);
+                    serieInventario.Points[i].AxisLabel = etiquetaNombre;
+
+                    i++;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al procesar el dato del producto: " + dr["Nombre"].ToString() + ". Detalle: " + ex.Message);
+                }
+            }
+
+            // Ajustar etiquetas del eje X
+            chartInventario.ChartAreas[0].AxisX.Interval = 1;
+            chartInventario.ChartAreas[0].AxisX.LabelStyle.Angle = -45;
+
+            chartInventario.Titles.Add("Reporte de Stock Actual por Producto");
+        }
     }
 
 }
