@@ -86,7 +86,7 @@
             this.tabGestionProducto.Controls.Add(this.tabGestionProductos);
             this.tabGestionProducto.Controls.Add(this.tabBusqueda);
             this.tabGestionProducto.Controls.Add(this.tabInforme);
-            this.tabGestionProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabGestionProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabGestionProducto.Location = new System.Drawing.Point(12, 12);
             this.tabGestionProducto.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabGestionProducto.Name = "tabGestionProducto";
@@ -109,14 +109,13 @@
             this.tabGestionProductos.Controls.Add(this.lblDescripción);
             this.tabGestionProductos.Controls.Add(this.lblPrecio);
             this.tabGestionProductos.Controls.Add(this.lblNombre);
-            this.tabGestionProductos.Location = new System.Drawing.Point(4, 27);
+            this.tabGestionProductos.Location = new System.Drawing.Point(4, 29);
             this.tabGestionProductos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabGestionProductos.Name = "tabGestionProductos";
             this.tabGestionProductos.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabGestionProductos.Size = new System.Drawing.Size(916, 457);
+            this.tabGestionProductos.Size = new System.Drawing.Size(916, 455);
             this.tabGestionProductos.TabIndex = 0;
             this.tabGestionProductos.Text = "Gestión de Producto";
-            this.tabGestionProductos.Click += new System.EventHandler(this.tabGestionProductos_Click);
             // 
             // groupBox2
             // 
@@ -125,19 +124,18 @@
             this.groupBox2.Controls.Add(this.btnEliminar);
             this.groupBox2.Location = new System.Drawing.Point(650, 65);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(152, 216);
+            this.groupBox2.Size = new System.Drawing.Size(174, 216);
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Botones";
             // 
             // btnAgregar
             // 
-            this.btnAgregar.BackColor = System.Drawing.Color.Cornsilk;
-            this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregar.BackColor = System.Drawing.Color.Bisque;
+            this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar.Location = new System.Drawing.Point(23, 29);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(109, 48);
+            this.btnAgregar.Size = new System.Drawing.Size(128, 48);
             this.btnAgregar.TabIndex = 15;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = false;
@@ -145,12 +143,12 @@
             // 
             // btnModificar
             // 
-            this.btnModificar.BackColor = System.Drawing.Color.Cornsilk;
-            this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModificar.BackColor = System.Drawing.Color.Bisque;
+            this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModificar.Location = new System.Drawing.Point(23, 86);
             this.btnModificar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(109, 48);
+            this.btnModificar.Size = new System.Drawing.Size(128, 48);
             this.btnModificar.TabIndex = 14;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = false;
@@ -158,12 +156,12 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.BackColor = System.Drawing.Color.Cornsilk;
-            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.BackColor = System.Drawing.Color.Bisque;
+            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.Location = new System.Drawing.Point(23, 145);
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(109, 48);
+            this.btnEliminar.Size = new System.Drawing.Size(128, 48);
             this.btnEliminar.TabIndex = 13;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
@@ -252,8 +250,8 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.BackColor = System.Drawing.Color.Cornsilk;
-            this.btnBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscar.BackColor = System.Drawing.Color.Bisque;
+            this.btnBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscar.Location = new System.Drawing.Point(428, 28);
             this.btnBuscar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBuscar.Name = "btnBuscar";
@@ -271,6 +269,7 @@
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(208, 27);
             this.txtCodigo.TabIndex = 3;
+            this.txtCodigo.TextChanged += new System.EventHandler(this.txtCodigo_TextChanged);
             // 
             // lblCódigo
             // 
@@ -323,11 +322,11 @@
             this.tabBusqueda.Controls.Add(this.cboCategoriaBusqueda);
             this.tabBusqueda.Controls.Add(this.txtCodigo2);
             this.tabBusqueda.Controls.Add(this.txtNombre2);
-            this.tabBusqueda.Location = new System.Drawing.Point(4, 27);
+            this.tabBusqueda.Location = new System.Drawing.Point(4, 29);
             this.tabBusqueda.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabBusqueda.Name = "tabBusqueda";
             this.tabBusqueda.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabBusqueda.Size = new System.Drawing.Size(916, 457);
+            this.tabBusqueda.Size = new System.Drawing.Size(916, 455);
             this.tabBusqueda.TabIndex = 1;
             this.tabBusqueda.Text = "Busqueda";
             // 
@@ -345,20 +344,19 @@
             this.descripcion});
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvProductos.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvProductos.Location = new System.Drawing.Point(6, 127);
+            this.dgvProductos.Location = new System.Drawing.Point(6, 150);
             this.dgvProductos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvProductos.Name = "dgvProductos";
             this.dgvProductos.RowHeadersWidth = 51;
             this.dgvProductos.RowTemplate.Height = 24;
-            this.dgvProductos.Size = new System.Drawing.Size(907, 338);
+            this.dgvProductos.Size = new System.Drawing.Size(907, 315);
             this.dgvProductos.TabIndex = 20;
-            this.dgvProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductos_CellContentClick);
             // 
             // codigo
             // 
@@ -404,12 +402,12 @@
             // 
             // btnBuscarPor
             // 
-            this.btnBuscarPor.BackColor = System.Drawing.Color.Moccasin;
-            this.btnBuscarPor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscarPor.Location = new System.Drawing.Point(801, 28);
+            this.btnBuscarPor.BackColor = System.Drawing.Color.LightGoldenrodYellow;
+            this.btnBuscarPor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarPor.Location = new System.Drawing.Point(373, 34);
             this.btnBuscarPor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBuscarPor.Name = "btnBuscarPor";
-            this.btnBuscarPor.Size = new System.Drawing.Size(109, 48);
+            this.btnBuscarPor.Size = new System.Drawing.Size(109, 66);
             this.btnBuscarPor.TabIndex = 19;
             this.btnBuscarPor.Text = "Buscar";
             this.btnBuscarPor.UseVisualStyleBackColor = false;
@@ -418,65 +416,65 @@
             // optNombre
             // 
             this.optNombre.AutoSize = true;
-            this.optNombre.Location = new System.Drawing.Point(520, 41);
+            this.optNombre.Location = new System.Drawing.Point(30, 82);
             this.optNombre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.optNombre.Name = "optNombre";
-            this.optNombre.Size = new System.Drawing.Size(83, 22);
+            this.optNombre.Size = new System.Drawing.Size(95, 24);
             this.optNombre.TabIndex = 18;
             this.optNombre.TabStop = true;
             this.optNombre.Text = "Nombre";
             this.optNombre.UseVisualStyleBackColor = true;
-            this.optNombre.CheckedChanged += new System.EventHandler(this.optNombre_CheckedChanged);
+            this.optNombre.CheckedChanged += new System.EventHandler(this.optNombre_CheckedChanged_1);
             // 
             // optCodigo
             // 
             this.optCodigo.AutoSize = true;
-            this.optCodigo.Location = new System.Drawing.Point(292, 39);
+            this.optCodigo.Location = new System.Drawing.Point(30, 54);
             this.optCodigo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.optCodigo.Name = "optCodigo";
-            this.optCodigo.Size = new System.Drawing.Size(77, 22);
+            this.optCodigo.Size = new System.Drawing.Size(88, 24);
             this.optCodigo.TabIndex = 17;
             this.optCodigo.TabStop = true;
             this.optCodigo.Text = "Código";
             this.optCodigo.UseVisualStyleBackColor = true;
-            this.optCodigo.CheckedChanged += new System.EventHandler(this.optCodigo_CheckedChanged);
+            this.optCodigo.CheckedChanged += new System.EventHandler(this.optCodigo_CheckedChanged_1);
             // 
             // optCategorias
             // 
             this.optCategorias.AutoSize = true;
-            this.optCategorias.Location = new System.Drawing.Point(25, 39);
+            this.optCategorias.Location = new System.Drawing.Point(30, 28);
             this.optCategorias.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.optCategorias.Name = "optCategorias";
-            this.optCategorias.Size = new System.Drawing.Size(101, 22);
+            this.optCategorias.Size = new System.Drawing.Size(121, 24);
             this.optCategorias.TabIndex = 16;
             this.optCategorias.TabStop = true;
             this.optCategorias.Text = "Categorías";
             this.optCategorias.UseVisualStyleBackColor = true;
-            this.optCategorias.CheckedChanged += new System.EventHandler(this.optCategorias_CheckedChanged);
+            this.optCategorias.CheckedChanged += new System.EventHandler(this.optCategorias_CheckedChanged_1);
             // 
             // cboCategoriaBusqueda
             // 
             this.cboCategoriaBusqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCategoriaBusqueda.FormattingEnabled = true;
-            this.cboCategoriaBusqueda.Location = new System.Drawing.Point(132, 39);
+            this.cboCategoriaBusqueda.Location = new System.Drawing.Point(174, 28);
             this.cboCategoriaBusqueda.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboCategoriaBusqueda.Name = "cboCategoriaBusqueda";
-            this.cboCategoriaBusqueda.Size = new System.Drawing.Size(131, 24);
+            this.cboCategoriaBusqueda.Size = new System.Drawing.Size(167, 24);
             this.cboCategoriaBusqueda.TabIndex = 14;
             // 
             // txtCodigo2
             // 
             this.txtCodigo2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodigo2.Location = new System.Drawing.Point(375, 41);
+            this.txtCodigo2.Location = new System.Drawing.Point(174, 57);
             this.txtCodigo2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtCodigo2.Name = "txtCodigo2";
-            this.txtCodigo2.Size = new System.Drawing.Size(121, 22);
+            this.txtCodigo2.Size = new System.Drawing.Size(167, 22);
             this.txtCodigo2.TabIndex = 13;
             // 
             // txtNombre2
             // 
             this.txtNombre2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre2.Location = new System.Drawing.Point(609, 42);
+            this.txtNombre2.Location = new System.Drawing.Point(174, 84);
             this.txtNombre2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNombre2.Name = "txtNombre2";
             this.txtNombre2.Size = new System.Drawing.Size(167, 22);
@@ -486,17 +484,17 @@
             // 
             this.tabInforme.BackColor = System.Drawing.Color.LightCyan;
             this.tabInforme.Controls.Add(this.chartInforme);
-            this.tabInforme.Location = new System.Drawing.Point(4, 27);
+            this.tabInforme.Location = new System.Drawing.Point(4, 29);
             this.tabInforme.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabInforme.Name = "tabInforme";
             this.tabInforme.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabInforme.Size = new System.Drawing.Size(916, 457);
+            this.tabInforme.Size = new System.Drawing.Size(916, 455);
             this.tabInforme.TabIndex = 2;
             this.tabInforme.Text = "Informe";
-            this.tabInforme.Click += new System.EventHandler(this.tabInforme_Click);
             // 
             // chartInforme
             // 
+            this.chartInforme.BorderlineColor = System.Drawing.Color.SeaShell;
             chartArea1.Name = "ChartArea1";
             this.chartInforme.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
@@ -515,7 +513,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightGray;
+            this.BackColor = System.Drawing.Color.BurlyWood;
             this.ClientSize = new System.Drawing.Size(941, 514);
             this.Controls.Add(this.tabGestionProducto);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

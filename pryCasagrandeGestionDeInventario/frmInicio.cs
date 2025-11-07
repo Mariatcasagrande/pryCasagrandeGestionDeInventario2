@@ -16,6 +16,9 @@ namespace pryCasagrandeGestionDeInventario
 {
     public partial class frmInicio : Form
     {
+        // ACÁ DECLARÁS LA CONEXIÓN UNA SOLA VEZ PARA TODO EL FORM
+        clsConexionBDSQL conexion = new clsConexionBDSQL();
+
         public frmInicio()
         {
             InitializeComponent();
@@ -23,75 +26,98 @@ namespace pryCasagrandeGestionDeInventario
 
         private void frmInicio_Load(object sender, EventArgs e)
         {
-            clsConexionBDSQL clsConexionBD = new clsConexionBDSQL();
-            clsConexionBD.ConectarBD();
-            clsConexionBD.CargarCategorias(cboCategorias);
-            clsConexionBD.CargarCategorias(cboCategoriaBusqueda);
-            clsConexionBDSQL conexion = new clsConexionBDSQL();
-            conexion.ConectarBD();
+            conexion.ConectarBD(); // Se conecta una sola vez
+
+            conexion.CargarCategorias(cboCategorias);
+            conexion.CargarCategorias(cboCategoriaBusqueda);
+
             conexion.GenerarReporteInventarioConPuntos(chartInforme);
+            btnBuscar.Enabled = false;
+            btnAgregar.Enabled = true;
+            btnModificar.Enabled = false;
+            btnEliminar.Enabled = false;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            clsConexionBDSQL clsConexionBDSQL = new clsConexionBDSQL();
-            clsConexionBDSQL.ConectarBD();
-            clsConexionBDSQL.AgregarABase(txtCodigo.Text, txtNombre.Text, cboCategorias.Text, Convert.ToDecimal(txtPrecio.Text), Convert.ToInt32(txtStock.Text), txtDescripcion.Text);
+            // Validación: comprobar que no haya campos vacíos
+            if (txtCodigo.Text == "" || txtNombre.Text== "" || cboCategorias.Text == "" ||
+                txtPrecio.Text == "" || txtStock.Text == "" || txtDescripcion.Text == "")
+            {
+                MessageBox.Show(" Por favor, complete todos los campos antes de agregar.", "Campos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; 
+            }
+
+            conexion.AgregarABase(
+                txtCodigo.Text,
+                txtNombre.Text,
+                cboCategorias.Text,
+                Convert.ToDecimal(txtPrecio.Text),
+                Convert.ToInt32(txtStock.Text),
+                txtDescripcion.Text
+            );
 
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-
-            clsConexionBDSQL conexion = new clsConexionBDSQL();
-            conexion.ConectarBD();
-
-
-            string nombre = "";
-            string categoria = "";
-            string precio = "";
-            string stock = "";
-            string descripcion = "";
+            string nombre = "", categoria = "", precio = "", stock = "", descripcion = "";
 
             bool existe = conexion.Buscar(txtCodigo.Text, ref nombre, ref categoria, ref precio, ref stock, ref descripcion);
 
             if (existe)
             {
-
-                txtNombre.Text = nombre;
+                // Se encontró → CARGA DATOS
                 cboCategorias.Text = categoria;
+                txtNombre.Text = nombre;
                 txtPrecio.Text = precio;
                 txtStock.Text = stock;
                 txtDescripcion.Text = descripcion;
+
+                btnAgregar.Enabled = false;    //Solo me deja agregar si no existe
+                btnModificar.Enabled = true;   //solo me deja modificar si existe
+                btnEliminar.Enabled = true;    //solo me deja eliminar si existe
             }
             else
             {
-
+                // No existe → LIMPIA CAMPOS
                 txtNombre.Clear();
                 cboCategorias.SelectedIndex = -1;
                 txtPrecio.Clear();
                 txtStock.Clear();
                 txtDescripcion.Clear();
+
+                btnAgregar.Enabled = true;    //Solo me deja agregar si no existe
+                btnModificar.Enabled = false;  //solo me deja modificar si existe
+                btnEliminar.Enabled = false;    //solo me deja eliminar si existe
             }
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            clsConexionBDSQL conexion = new clsConexionBDSQL();
-            conexion.ConectarBD();
-            conexion.Modificar(txtCodigo.Text, txtNombre.Text, cboCategorias.Text, txtPrecio.Text, txtStock.Text, txtDescripcion.Text);
+            if (txtCodigo.Text == "" || txtNombre.Text == "" || cboCategorias.Text == "" ||
+                txtPrecio.Text == "" || txtStock.Text == "" ||  txtDescripcion.Text == "")
+            {
+                MessageBox.Show("Por favor complete todos los campos antes de modificar.",
+                    "Campos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; 
+            }
+
+            conexion.Modificar(
+                txtCodigo.Text,
+                txtNombre.Text,
+                cboCategorias.Text,
+                txtPrecio.Text,
+                txtStock.Text,
+                txtDescripcion.Text
+            );
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            clsConexionBDSQL conexion = new clsConexionBDSQL();
-            conexion.ConectarBD();
-
             if (!string.IsNullOrWhiteSpace(txtCodigo.Text))
             {
-
                 conexion.Eliminar(txtCodigo.Text);
-
 
                 txtCodigo.Clear();
                 txtNombre.Clear();
@@ -99,10 +125,13 @@ namespace pryCasagrandeGestionDeInventario
                 txtPrecio.Clear();
                 txtStock.Clear();
                 txtDescripcion.Clear();
-
             }
         }
 
+        private void txtCodigo_TextChanged(object sender, EventArgs e)
+        {
+            btnBuscar.Enabled = !string.IsNullOrWhiteSpace(txtCodigo.Text);
+        }
 
         private void btnBuscarPor_Click(object sender, EventArgs e)
         {
@@ -137,39 +166,27 @@ namespace pryCasagrandeGestionDeInventario
             if (controlActivo != cboCategoriaBusqueda) cboCategoriaBusqueda.SelectedIndex = -1;
         }
 
-
-        private void optCategorias_CheckedChanged(object sender, EventArgs e)
+        private void optCategorias_CheckedChanged_1(object sender, EventArgs e)
         {
             cboCategoriaBusqueda.Enabled = optCategorias.Checked;
             txtCodigo2.Enabled = !optCategorias.Checked;
             txtNombre2.Enabled = !optCategorias.Checked;
         }
 
-        private void optCodigo_CheckedChanged(object sender, EventArgs e)
+        private void optCodigo_CheckedChanged_1(object sender, EventArgs e)
         {
+
             txtCodigo2.Enabled = optCodigo.Checked;
             txtNombre2.Enabled = !optCodigo.Checked;
             cboCategoriaBusqueda.Enabled = !optCodigo.Checked;
         }
 
-        private void optNombre_CheckedChanged(object sender, EventArgs e)
+        private void optNombre_CheckedChanged_1(object sender, EventArgs e)
         {
             txtNombre2.Enabled = optNombre.Checked;
             txtCodigo2.Enabled = !optNombre.Checked;
             cboCategoriaBusqueda.Enabled = !optNombre.Checked;
         }
-
-        private void dgvProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void tabInforme_Click(object sender, EventArgs e)
-        {}
-
-        private void tabGestionProductos_Click(object sender, EventArgs e)
-        {
-
-        }
     }
+
 }
